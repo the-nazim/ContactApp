@@ -22,7 +22,7 @@ class PhoneBook
             cin>>name;
             cout<<"Enter phone number: ";
             cin>>phoneNumber; 
-            contact[name] = phoneNumber;
+            contact[phoneNumber] = name;
         }
         void show_contacts()
         {
@@ -34,7 +34,24 @@ class PhoneBook
                 cout<<"Phone Number: "<<i.second<<endl;
             }
         }
+        void search_contact();
 };
+
+void PhoneBook::search_contact()
+{
+    string number;
+    cout<<"Enter the number: ";
+    cin>>number;
+    auto it = contact.find(number);
+    if(it != contact.end())
+    {
+        cout<<"Contact info: "<<endl;
+        cout<<"Name: "<<it->second<<endl;
+        cout<<"Phone Number: "<<it->first<<endl;
+    }
+    else
+        cout<<"No contact info"<<endl;
+}
 
 int main()
 { 
@@ -50,5 +67,6 @@ int main()
             flag=false;
     }
     pb.show_contacts();
+    pb.search_contact();
     return 0;
 }
